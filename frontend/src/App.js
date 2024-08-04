@@ -38,11 +38,11 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Send Tokens</h1>
+      <h1 className='header'>ThatDegenDev Multisender</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Token Type:
+            <div>Token Type</div>
             <select value={token} onChange={(e) => setToken(e.target.value)}>
               <option value="SOL">SOL</option>
               <option value="SPL">SPL Token</option>
@@ -52,7 +52,7 @@ function App() {
         {token === 'SPL' && (
           <div>
             <label>
-              SPL Token Mint Address:
+              <div>SPL Token Mint Address</div>
               <input
                 type="text"
                 value={tokenMint}
@@ -64,26 +64,34 @@ function App() {
         )}
         {recipients.map((recipient, index) => (
           <div key={index} className="recipient">
-            <input
-              type="text"
-              name="address"
-              placeholder="Recipient Address"
-              value={recipient.address}
-              onChange={(event) => handleInputChange(index, event)}
-            />
-            <input
-              type="number"
-              name="amount"
-              placeholder="Amount (e.g., 0.5)"
-              value={recipient.amount}
-              onChange={(event) => handleInputChange(index, event)}
-            />
+            <div className='address'>
+              <input
+                type="text"
+                className='address'
+                name="address"
+                placeholder="Recipient Address"
+                value={recipient.address}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+            </div>
+            <div className='amount'>
+              <input
+                type="number"
+                className='amount'
+                name="amount"
+                placeholder="Amount (e.g., 0.5)"
+                value={recipient.amount}
+                onChange={(event) => handleInputChange(index, event)}
+              />
+            </div>
           </div>
         ))}
-        <button type="button" onClick={handleAddRecipient}>Add Recipient</button>
-        <button type="submit">Send</button>
+        <div className='btns'>
+          <button type="button" onClick={handleAddRecipient}>Add Recipient</button>
+          <button type="submit">Send</button>
+        </div>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className='message'>{message}</p>}
     </div>
   );
 }
